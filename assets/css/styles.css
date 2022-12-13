@@ -1,0 +1,39 @@
+*{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+body{
+    background-color: lightcyan;
+    text-align: center;
+}
+
+h1{
+    font-size: 40px;
+    text-shadow: 1px 1px 1px gray;
+}
+
+button{
+    background-color: blueviolet;
+    color: white;
+    border: 3px black solid;
+    padding: 10px;
+    margin: 5px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 2px 2px 2px gray;
+    border-radius: 3px;
+}
+
+button:hover{
+    background-color: rgb(168, 105, 228);
+}
+
+section{
+    margin-top: 50px;
+}
+
+#startButton{
+    font-size: 25px;
+    padding: 15px;
+}
