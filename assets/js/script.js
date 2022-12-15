@@ -1,38 +1,31 @@
 /*
-Make start button begin game function
-    start timer
-    start questions
-    end when timer finish or done with questions
-Make highscore button view high scores
-    store highscores in local storage 
-Varable for score 
-Nested objects for questions
-Maybe a loop to go through questions
-    if correct add to score
-    if incorrect subtract from time 
+T0-DO:
+-Make the submit form for saving scores work 
+-Make the view highscores button bring up saved scores
+-M
 */
 
 var questions = {
     question1: {
-        question: "Question 1",
-        answerCorrect: "Correct Answer",
-        answerIncorrect1: "Incorrect Answer 1",
-        answerIncorrect2: "Incorrect Answer 2",
-        answerIncorrect3: "Incorrect Answer 3"
+        question: "Commonly used data types data types DO NOT include:",
+        answerCorrect: "Alerts",
+        answerIncorrect1: "Strings",
+        answerIncorrect2: "Booleans",
+        answerIncorrect3: "Numbers"
     },
      question2: {
-        question: "Question 1",
-        answerCorrect: "Correct Answer",
-        answerIncorrect1: "Incorrect Answer 1",
-        answerIncorrect2: "Incorrect Answer 2",
-        answerIncorrect3: "Incorrect Answer 3"
+        question: "String values must be enclosed by ___ when being assigned variables.",
+        answerCorrect: "Quotation marks",
+        answerIncorrect1: "Curly brackets",
+        answerIncorrect2: "Parentheses",
+        answerIncorrect3: "None of the above"
     },
      question3: {
-        question: "Question 1",
-        answerCorrect: "Correct Answer",
-        answerIncorrect1: "Incorrect Answer 1",
-        answerIncorrect2: "Incorrect Answer 2",
-        answerIncorrect3: "Incorrect Answer 3"
+        question: "Arrays in JavaScript can be used to store:",
+        answerCorrect: "All of the above",
+        answerIncorrect1: "Numbers",
+        answerIncorrect2: "Strings",
+        answerIncorrect3: "Other arrays"
     }
 }
 
@@ -44,16 +37,19 @@ var answerButton3 = document.getElementById("answerButton3");
 var answerButton4 = document.getElementById("answerButton4");
 var timerEl = document.getElementById("timer");
 var scoreEl = document.getElementById("score");
+var nameEl = document.getElementById("name");
 
 var timer;
 var timerCount;
 var score = 0;
+var scoreSaved= [];
 
 function init(){
     answerButton1.hidden = true;
     answerButton2.hidden = true;
     answerButton3.hidden = true;
     answerButton4.hidden = true;
+    nameEl.hidden = true;
 }
 
 init();
@@ -62,55 +58,139 @@ startButton.addEventListener("click", startQuiz);
 
 function startQuiz(){
     timerCount = 60;
+    timerEl.textContent = timerCount + " seconds left";
     startTimer();
     startButton.hidden =true;
     answerButton1.hidden = false;
     answerButton2.hidden = false;
     answerButton3.hidden = false;
     answerButton4.hidden = false;
+    scoreEl.textContent = score + " points";
+    question1();
+}
+
+function question1(){
     questionDisplay.textContent = questions.question1.question;
     answerButton1.textContent = questions.question1.answerCorrect;
     answerButton2.textContent = questions.question1.answerIncorrect1;
     answerButton3.textContent = questions.question1.answerIncorrect2;
     answerButton4.textContent = questions.question1.answerIncorrect3;
-
-    //if user clicks on correct answer add 1 to score
-    //if user click on incorrect answer subtract from timer
+    answerButton1.addEventListener("click", function(){
+        score++;
+        if (score > 1){
+        scoreEl.textContent = score + " points";  
+        } else if (score =1){
+        scoreEl.textContent = score + " point";
+        }
+        question2();
+    });
+    answerButton2.addEventListener("click", function(){
+        if (timerCount > 15){
+            timerCount = timerCount -15;
+        } else if(timerCount <= 15){
+            endQuiz();
+        }
+        question2();
+    });
+    answerButton3.addEventListener("click", function(){
+        if (timerCount > 15){
+            timerCount = timerCount -15;
+        } else if(timerCount <= 15){
+            endQuiz();
+        }
+        question2();
+    });
+    answerButton4.addEventListener("click", function(){
+        if (timerCount > 15){
+            timerCount = timerCount -15;
+        } else if(timerCount <= 15){
+            endQuiz();
+        }
+        question2();
+    });
 }
 
-answerButton1.addEventListener("click", function(){
-    score++;
-    if (score > 1){
+function question2(){
+    questionDisplay.textContent = questions.question2.question;
+    answerButton1.textContent = questions.question2.answerIncorrect2;
+    answerButton2.textContent = questions.question2.answerIncorrect1;
+    answerButton3.textContent = questions.question2.answerCorrect;
+    answerButton4.textContent = questions.question2.answerIncorrect3;
+    answerButton1.addEventListener("click", function(){
+        if (timerCount > 15){
+            timerCount = timerCount -15;
+        } else if(timerCount <= 15){
+            endQuiz();
+        }
+        question3();
+    });
+    answerButton2.addEventListener("click", function(){
+        if (timerCount > 15){
+            timerCount = timerCount -15;
+        } else if(timerCount <= 15){
+            endQuiz();
+        }
+        question3();
+    });
+    answerButton3.addEventListener("click", function(){
+        score++;
+        if (score > 1){
         scoreEl.textContent = score + " points";  
-    } else if (score =1){
+        } else if (score =1){
         scoreEl.textContent = score + " point";
-    }
-    endQuiz();
-})
+        }
+        question3();
+    });
+    answerButton4.addEventListener("click", function(){
+        if (timerCount > 15){
+            timerCount = timerCount -15;
+        } else if(timerCount <= 15){
+            endQuiz();
+        }
+        question3();
+    });
+}
 
-answerButton2.addEventListener("click",function(){
-    if (timerCount > 15){
-        timerCount = timerCount -15;
-    } else if(timerCount <= 15){
+function question3(){
+    questionDisplay.textContent = questions.question3.question;
+    answerButton1.textContent = questions.question3.answerIncorrect3;
+    answerButton2.textContent = questions.question3.answerIncorrect1;
+    answerButton3.textContent = questions.question3.answerIncorrect2;
+    answerButton4.textContent = questions.question3.answerCorrect;
+    answerButton1.addEventListener("click", function(){
+        if (timerCount > 15){
+            timerCount = timerCount -15;
+        } else if(timerCount <= 15){
+            endQuiz();
+        }
         endQuiz();
-    }
-})
-
-answerButton3.addEventListener("click",function(){
-    if (timerCount > 15){
-        timerCount = timerCount -15;
-    } else if(timerCount <= 15){
+    });
+    answerButton2.addEventListener("click", function(){
+        if (timerCount > 15){
+            timerCount = timerCount -15;
+        } else if(timerCount <= 15){
+            endQuiz();
+        }
         endQuiz();
-    }
-})
-
-answerButton4.addEventListener("click",function(){
-    if (timerCount > 15){
-        timerCount = timerCount -15;
-    } else if(timerCount <= 15){
+    });
+    answerButton3.addEventListener("click", function(){
+        if (timerCount > 15){
+            timerCount = timerCount -15;
+        } else if(timerCount <= 15){
+            endQuiz();
+        }
         endQuiz();
-    }
-})
+    });
+    answerButton4.addEventListener("click", function(){
+        score++;
+        if (score > 1){
+        scoreEl.textContent = score + " points";  
+        } else if (score =1){
+        scoreEl.textContent = score + " point";
+        }
+        endQuiz();
+    });
+}
 
 function startTimer(){
     timer = setInterval(function(){
@@ -126,7 +206,7 @@ function endQuiz(){
     timerEl.textContent = "Quiz finished"
     if (score > 1 || score === 0){
         scoreEl.textContent = score + " points";  
-    } else if (score =1){
+    } else {
         scoreEl.textContent = score + " point";
     }
     clearInterval(timer);
@@ -135,4 +215,19 @@ function endQuiz(){
     answerButton3.hidden = true;
     answerButton4.hidden = true;
     questionDisplay.hidden = true;
+    nameEl.hidden = false 
+}
+
+
+//SAVE SCORES - DOESN'T WORK
+nameEl.addEventListener("submit", function(event){
+    event.preventDefault();
+    var nameText = nameEl.value.trim();
+    scoreSaved.push(score + nameText);
+    saveScore();
+    console.log(scoreSaved);
+})
+
+function saveScore(){
+    localStorage.setItem("score", JSON.stringify(scoreSaved));
 }
