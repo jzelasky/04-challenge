@@ -36,7 +36,7 @@ var answerButton3 = document.getElementById("answerButton3");
 var answerButton4 = document.getElementById("answerButton4");
 var timerEl = document.getElementById("timer");
 var scoreEl = document.getElementById("score");
-var nameInput = document.getElementById("nameInput");
+var initialsInput = document.getElementById("initialsInput");
 var highscoreBtn = document.getElementById("highscores");
 var highscoreHeader = document.querySelector("h3");
 var scoreDisplay = document.querySelector("h4");
@@ -51,7 +51,7 @@ function init(){
     answerButton2.hidden = true;
     answerButton3.hidden = true;
     answerButton4.hidden = true;
-    nameInput.hidden = true;
+    initialsInput.hidden = true;
 }
 
 init();
@@ -217,15 +217,15 @@ function endQuiz(){
     answerButton3.hidden = true;
     answerButton4.hidden = true;
     questionDisplay.hidden = true;
-    nameInput.hidden = false 
+    initialsInput.hidden = false 
 }
 
 document.querySelector('form').addEventListener('submit', function(event){
     event.preventDefault();
     if (score === 1){
-        var nameAndScore = nameInput.value + ": " + score + " point";
+        var nameAndScore = initialsInput.value + ": " + score + " point";
     } else{
-        var nameAndScore = nameInput.value + ": " + score + " points";
+        var nameAndScore = initialsInput.value + ": " + score + " points";
     }
     localStorage.setItem("nameAndScore", JSON.stringify(nameAndScore));
     displayScores();
@@ -238,7 +238,7 @@ function displayScores(){
     answerButton2.hidden = true;
     answerButton3.hidden = true;
     answerButton4.hidden = true;
-    nameInput.hidden = true;
+    initialsInput.hidden = true;
     startButton.hidden = true;
     highscoreBtn.hidden = true;
     timerEl.hidden = true;
