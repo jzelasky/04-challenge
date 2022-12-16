@@ -42,6 +42,7 @@ var initialsInput = document.getElementById("initialsInput");
 var highscoreBtn = document.getElementById("highscores");
 var highscoreHeader = document.querySelector("h3");
 var scoreDisplay = document.querySelector("h4");
+var goBackBtn = document.getElementById("goBackBtn");
 
 var timer;
 var timerCount;
@@ -53,11 +54,16 @@ function init(){
     hideQ1Buttons();
     hideQ2Buttons();
     hideQ3Buttons();
+    goBackBtn.hidden = true;
 }
 
 init();
 
 startButton.addEventListener("click", startQuiz);
+
+goBackBtn.addEventListener("click", function(){
+    location.reload();
+})
 
 function hideQ1Buttons(){
     answerButton11.hidden = true;
@@ -91,6 +97,8 @@ function startQuiz(){
     answerButton14.hidden = false;
     scoreEl.textContent = score + " points";
     question1();
+    goBackBtn.hidden = false;
+    goBackBtn.textContent = "Start over";
 }
 
 function rightAnswer(){
@@ -215,6 +223,7 @@ function endQuiz(){
     hideQ3Buttons();
     questionDisplay.hidden = true;
     initialsInput.hidden = false;
+    goBackBtn.textContent = "Try again";
 }
 
 document.querySelector('form').addEventListener('submit', function(event){
@@ -241,4 +250,6 @@ function displayScores(){
     scoreEl.hidden = true;
     highscoreHeader.textContent = "Highscores:"
     scoreDisplay.textContent = JSON.parse(localStorage.getItem('nameAndScore'));
+    goBackBtn.hidden = false;
+    goBackBtn.textContent = "Go back";
 }
