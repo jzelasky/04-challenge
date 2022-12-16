@@ -234,7 +234,7 @@ document.querySelector('form').addEventListener('submit', function(event){
         var nameAndScore = initialsInput.value + ": " + score + " points";
     }
     localStorage.setItem("nameAndScore", JSON.stringify(nameAndScore));
-    displayScores();
+    location.reload();
 })
 
 highscoreBtn.addEventListener("click", displayScores);
@@ -248,7 +248,7 @@ function displayScores(){
     highscoreBtn.hidden = true;
     timerEl.hidden = true;
     scoreEl.hidden = true;
-    highscoreHeader.textContent = "Highscores:"
+    highscoreHeader.textContent = "Saved score:"
     scoreDisplay.textContent = JSON.parse(localStorage.getItem('nameAndScore'));
     goBackBtn.hidden = false;
     goBackBtn.textContent = "Go back";
