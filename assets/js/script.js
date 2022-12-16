@@ -1,9 +1,3 @@
-/*
-T0-DO:
--Make the view highscores button bring up saved scores
--M
-*/
-
 var questions = {
     question1: {
         question: "Commonly used data types data types DO NOT include:",
@@ -30,10 +24,18 @@ var questions = {
 
 var startButton = document.getElementById("startButton");
 var questionDisplay = document.querySelector("h2");
-var answerButton1 = document.getElementById("answerButton1");
-var answerButton2 = document.getElementById("answerButton2");
-var answerButton3 = document.getElementById("answerButton3");
-var answerButton4 = document.getElementById("answerButton4");
+var answerButton11 = document.getElementById("answerButton11");
+var answerButton12 = document.getElementById("answerButton12");
+var answerButton13 = document.getElementById("answerButton13");
+var answerButton14 = document.getElementById("answerButton14");
+var answerButton21 = document.getElementById("answerButton21");
+var answerButton22 = document.getElementById("answerButton22");
+var answerButton23 = document.getElementById("answerButton23");
+var answerButton24 = document.getElementById("answerButton24");
+var answerButton31 = document.getElementById("answerButton31");
+var answerButton32 = document.getElementById("answerButton32");
+var answerButton33 = document.getElementById("answerButton33");
+var answerButton34 = document.getElementById("answerButton34");
 var timerEl = document.getElementById("timer");
 var scoreEl = document.getElementById("score");
 var initialsInput = document.getElementById("initialsInput");
@@ -47,149 +49,145 @@ var score = 0;
 var scoreSaved= [];
 
 function init(){
-    answerButton1.hidden = true;
-    answerButton2.hidden = true;
-    answerButton3.hidden = true;
-    answerButton4.hidden = true;
     initialsInput.hidden = true;
+    hideQ1Buttons();
+    hideQ2Buttons();
+    hideQ3Buttons();
 }
 
 init();
 
 startButton.addEventListener("click", startQuiz);
 
+function hideQ1Buttons(){
+    answerButton11.hidden = true;
+    answerButton12.hidden = true;
+    answerButton13.hidden = true;
+    answerButton14.hidden = true;
+}
+
+function hideQ2Buttons(){
+    answerButton21.hidden = true;
+    answerButton22.hidden = true;
+    answerButton23.hidden = true;
+    answerButton24.hidden = true;
+}
+
+function hideQ3Buttons(){
+    answerButton31.hidden = true;
+    answerButton32.hidden = true;
+    answerButton33.hidden = true;
+    answerButton34.hidden = true;
+}
+
 function startQuiz(){
     timerCount = 60;
     timerEl.textContent = timerCount + " seconds left";
     startTimer();
     startButton.hidden =true;
-    answerButton1.hidden = false;
-    answerButton2.hidden = false;
-    answerButton3.hidden = false;
-    answerButton4.hidden = false;
+    answerButton11.hidden = false;
+    answerButton12.hidden = false;
+    answerButton13.hidden = false;
+    answerButton14.hidden = false;
     scoreEl.textContent = score + " points";
     question1();
 }
 
+function rightAnswer(){
+    score++;
+    if (score > 1){
+    scoreEl.textContent = score + " points";  
+    } else if (score =1){
+    scoreEl.textContent = score + " point";
+    }
+}
+
+function wrongAnswer(){
+    if (timerCount > 15){
+        timerCount = timerCount -15;
+    } else if(timerCount <= 15){
+        endQuiz();
+    }
+}
+
 function question1(){
     questionDisplay.textContent = questions.question1.question;
-    answerButton1.textContent = questions.question1.answerCorrect;
-    answerButton2.textContent = questions.question1.answerIncorrect1;
-    answerButton3.textContent = questions.question1.answerIncorrect2;
-    answerButton4.textContent = questions.question1.answerIncorrect3;
-    answerButton1.addEventListener("click", function(){
-        score++;
-        if (score > 1){
-        scoreEl.textContent = score + " points";  
-        } else if (score =1){
-        scoreEl.textContent = score + " point";
-        }
+    answerButton11.textContent = questions.question1.answerCorrect;
+    answerButton12.textContent = questions.question1.answerIncorrect1;
+    answerButton13.textContent = questions.question1.answerIncorrect2;
+    answerButton14.textContent = questions.question1.answerIncorrect3;
+    answerButton11.addEventListener("click", function(){
+        rightAnswer();
         question2();
     });
-    answerButton2.addEventListener("click", function(){
-        if (timerCount > 15){
-            timerCount = timerCount -15;
-        } else if(timerCount <= 15){
-            endQuiz();
-        }
+    answerButton12.addEventListener("click", function(){
+        wrongAnswer();
         question2();
     });
-    answerButton3.addEventListener("click", function(){
-        if (timerCount > 15){
-            timerCount = timerCount -15;
-        } else if(timerCount <= 15){
-            endQuiz();
-        }
+    answerButton13.addEventListener("click", function(){
+        wrongAnswer();
         question2();
     });
-    answerButton4.addEventListener("click", function(){
-        if (timerCount > 15){
-            timerCount = timerCount -15;
-        } else if(timerCount <= 15){
-            endQuiz();
-        }
+    answerButton14.addEventListener("click", function(){
+        wrongAnswer();
         question2();
     });
 }
 
 function question2(){
+    hideQ1Buttons();
+    answerButton21.hidden = false;
+    answerButton22.hidden = false;
+    answerButton23.hidden = false;
+    answerButton24.hidden = false;
     questionDisplay.textContent = questions.question2.question;
-    answerButton1.textContent = questions.question2.answerIncorrect2;
-    answerButton2.textContent = questions.question2.answerIncorrect1;
-    answerButton3.textContent = questions.question2.answerCorrect;
-    answerButton4.textContent = questions.question2.answerIncorrect3;
-    answerButton1.addEventListener("click", function(){
-        if (timerCount > 15){
-            timerCount = timerCount -15;
-        } else if(timerCount <= 15){
-            endQuiz();
-        }
+    answerButton21.textContent = questions.question2.answerIncorrect2;
+    answerButton22.textContent = questions.question2.answerIncorrect1;
+    answerButton23.textContent = questions.question2.answerCorrect;
+    answerButton24.textContent = questions.question2.answerIncorrect3;
+    answerButton21.addEventListener("click", function(){
+        wrongAnswer();
         question3();
     });
-    answerButton2.addEventListener("click", function(){
-        if (timerCount > 15){
-            timerCount = timerCount -15;
-        } else if(timerCount <= 15){
-            endQuiz();
-        }
+    answerButton22.addEventListener("click", function(){
+        wrongAnswer();
         question3();
     });
-    answerButton3.addEventListener("click", function(){
-        score++;
-        if (score > 1){
-        scoreEl.textContent = score + " points";  
-        } else if (score =1){
-        scoreEl.textContent = score + " point";
-        }
+    answerButton23.addEventListener("click", function(){
+        rightAnswer();
         question3();
     });
-    answerButton4.addEventListener("click", function(){
-        if (timerCount > 15){
-            timerCount = timerCount -15;
-        } else if(timerCount <= 15){
-            endQuiz();
-        }
+    answerButton24.addEventListener("click", function(){
+        wrongAnswer();
         question3();
     });
 }
 
 function question3(){
+    hideQ2Buttons();
+    answerButton31.hidden = false;
+    answerButton32.hidden = false;
+    answerButton33.hidden = false;
+    answerButton34.hidden = false;
     questionDisplay.textContent = questions.question3.question;
-    answerButton1.textContent = questions.question3.answerIncorrect3;
-    answerButton2.textContent = questions.question3.answerIncorrect1;
-    answerButton3.textContent = questions.question3.answerIncorrect2;
-    answerButton4.textContent = questions.question3.answerCorrect;
-    answerButton1.addEventListener("click", function(){
-        if (timerCount > 15){
-            timerCount = timerCount -15;
-        } else if(timerCount <= 15){
-            endQuiz();
-        }
+    answerButton31.textContent = questions.question3.answerIncorrect3;
+    answerButton32.textContent = questions.question3.answerIncorrect1;
+    answerButton33.textContent = questions.question3.answerIncorrect2;
+    answerButton34.textContent = questions.question3.answerCorrect;
+    answerButton31.addEventListener("click", function(){
+        wrongAnswer();
         endQuiz();
     });
-    answerButton2.addEventListener("click", function(){
-        if (timerCount > 15){
-            timerCount = timerCount -15;
-        } else if(timerCount <= 15){
-            endQuiz();
-        }
+    answerButton32.addEventListener("click", function(){
+        wrongAnswer();
         endQuiz();
     });
-    answerButton3.addEventListener("click", function(){
-        if (timerCount > 15){
-            timerCount = timerCount -15;
-        } else if(timerCount <= 15){
-            endQuiz();
-        }
+    answerButton33.addEventListener("click", function(){
+        wrongAnswer();
         endQuiz();
     });
-    answerButton4.addEventListener("click", function(){
-        score++;
-        if (score > 1){
-        scoreEl.textContent = score + " points";  
-        } else if (score =1){
-        scoreEl.textContent = score + " point";
-        }
+    answerButton34.addEventListener("click", function(){
+        rightAnswer();
         endQuiz();
     });
 }
@@ -212,12 +210,11 @@ function endQuiz(){
         scoreEl.textContent = score + " point";
     }
     clearInterval(timer);
-    answerButton1.hidden = true;
-    answerButton2.hidden = true;
-    answerButton3.hidden = true;
-    answerButton4.hidden = true;
+    hideQ1Buttons();
+    hideQ2Buttons();
+    hideQ3Buttons();
     questionDisplay.hidden = true;
-    initialsInput.hidden = false 
+    initialsInput.hidden = false;
 }
 
 document.querySelector('form').addEventListener('submit', function(event){
@@ -234,10 +231,9 @@ document.querySelector('form').addEventListener('submit', function(event){
 highscoreBtn.addEventListener("click", displayScores);
 
 function displayScores(){
-    answerButton1.hidden = true;
-    answerButton2.hidden = true;
-    answerButton3.hidden = true;
-    answerButton4.hidden = true;
+    hideQ1Buttons();
+    hideQ2Buttons();
+    hideQ3Buttons();
     initialsInput.hidden = true;
     startButton.hidden = true;
     highscoreBtn.hidden = true;
